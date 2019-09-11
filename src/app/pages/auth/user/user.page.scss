@@ -1,0 +1,34 @@
+.linha {
+    background-color: #252422;
+    width: 5px;
+    height: 100%;
+    margin-left: 12%;
+    position: fixed;
+
+}
+
+.circle {
+    position: absolute;
+    margin-top: 50%;
+    left: 25px;
+    font-size: 25px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    background-color: #252422;
+    z-index: 3;
+}
+
+.lista-icons {
+    top: -5%;
+    left: 10%;
+    position: absolute;
+    list-style-type: none;
+}
+
+ion-list {
+
+    --ion-background-color: rgba(255, 255, 255, 0);
+}

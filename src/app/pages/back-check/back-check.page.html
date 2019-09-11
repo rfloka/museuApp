@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-title color="branco">MuseuAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row justify-content-center>
+      <h1>Bem-Vindo</h1>
+    </ion-row>
+    <form [formGroup]="idform">
+      <ion-row>
+        <ion-col size="12">
+          <div *ngIf="erro" class="alert alert-danger" role="alert">
+            Código Invalido
+          </div>
+          <ion-item>
+            <ion-label position="floating"><b>Insira o Código do Museu</b></ion-label>
+            <ion-input formControlName="serverid" type="number"></ion-input>
+          </ion-item>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.serverid">
+              <div class="error-message"
+                *ngIf="idform.get('serverid').hasError(error.type) && (idform.get('serverid').dirty || idform.get('serverid').touched)">
+                {{error.message}}
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-button [disabled]="!idform.valid" (click)="check()" color="vermelho">
+          Entrar
+        </ion-button>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Autores</ion-label>
+        <ion-select multiple="true" [(ngModel)]="autoresSelected" cancelText="Cancelar" okText="OK">
+          <div *ngFor="let autor of autores">
+            <ion-select-option value="{{autor}}">{{autor}}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Rating</ion-label>
+        <ion-select multiple="true" [(ngModel)]="rating" cancelText="Cancelar" okText="OK">
+          <ion-select-option value="5">5</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-no-margin">
+    <ion-col size="6">
+      <ion-item>
+        <ion-label>MyVisit</ion-label>
+        <ion-toggle [(ngModel)]="myvisit" color="vermelho"></ion-toggle>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item>
+        <ion-label>Vistas</ion-label>
+        <ion-toggle [(ngModel)]="vistas" color="vermelho"></ion-toggle>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4"></ion-col>
+    <ion-col size="4">
+      <ion-button (click)="ok()" color="vermelho">
+        Filtrar
+      </ion-button>
+    </ion-col>
+    <ion-col size="4"></ion-col>
+  </ion-row>
+</ion-grid>

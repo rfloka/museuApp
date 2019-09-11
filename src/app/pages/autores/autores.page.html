@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" color="branco"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="branco">{{autor.title}}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content *ngIf="autor" [scrollEvents]="true">
+  <ion-grid>
+    <ion-row size="12">
+      <ion-card-header
+        style="margin:10px;border-style: solid;border-width: 5px;border-color: #252422;background-color: #FFFCF2;border-radius: 10px;width:100%;">
+        <ion-img style="height:30vh;width:auto;display: block;margin-left: auto;margin-right: auto;"
+          src="{{ autor.Foto.src }}">
+        </ion-img>
+      </ion-card-header>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6"> <b>Nascimento:</b>{{ autor.Nascimento }} </ion-col>
+    </ion-row>
+    <div class="ion-text-wrap" class="ion-padding">
+      {{ autor.Descricao }}
+    </div>
+  </ion-grid>
+</ion-content>

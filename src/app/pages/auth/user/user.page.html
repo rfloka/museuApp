@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="vermelho">
+    <ion-buttons slot="start">
+      <ion-back-button href="/home" color="branco"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="branco">
+      Olá {{username}}
+    </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="logout()">
+        <ion-icon color="branco" slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="linha"></div>
+  <ion-list>
+    <div *ngFor="let peca of pecas; index as i">
+      <ion-item no-lines [routerLink]="['/pecadetails',peca.Nid,lastpage]" *ngIf="peca.guardado">
+        <ion-thumbnail slot="start">
+          <ion-img style="border-radius: 50%;border: 3px solid #252422;margin-bottom: 30px;"
+            src="{{ peca.imagens.src }}">
+          </ion-img>
+          <ul class="lista-icons">
+            <div *ngIf="peca.visto">
+              <li><i style="color:#469911;" class="fas fa-check-square"></i></li>
+            </div>
+            <div *ngIf="peca.guardado">
+              <li><i style="color:#E72F37;" class="fas fa-bookmark"></i></li>
+            </div>
+            <div *ngIf='peca.audio != false'>
+              <li><i class="fas fa-volume-up"></i></li>
+            </div>
+          </ul>
+        </ion-thumbnail>
+        <ion-label style="margin-bottom: -9%;">
+          <h1 style="color:#252422;margin-left: 15px;">{{ peca.Title }}</h1>
+          <ul style="list-style-type: none;margin-left: -9%;color:#FDE93E;">
+            <li>
+              <div [ngSwitch]="peca.rating">
+                <div *ngSwitchCase="1">
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <div *ngSwitchCase="2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <div *ngSwitchCase="3">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <div *ngSwitchCase="4">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <div *ngSwitchCase="5">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div *ngSwitchDefault>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

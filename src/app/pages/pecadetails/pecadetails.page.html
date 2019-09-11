@@ -1,0 +1,118 @@
+<ion-content *ngIf="peca" [scrollEvents]="true">
+  <ion-grid>
+    <ion-row size="12">
+      <ion-card-header
+        style="margin:10px;border-style: solid;border-width: 5px;border-color: #252422;background-color: #FFFCF2;border-radius: 10px;width:100%;">
+        <ion-img style="height:30vh;width:auto;display: block;margin-left: auto;margin-right: auto;"
+          src="{{ peca.imagens.src }}">
+        </ion-img>
+      </ion-card-header>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        <h1>{{ peca.Title }}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="7"> <b>Autor:</b><a style="color:#E72F37;"
+          [routerLink]="['/autores',peca.Autor]">{{ peca.Autor }}</a>
+      </ion-col>
+      <ion-col size="5"> <b>Ano:</b>{{ peca.Data }} </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col size="10">
+        <ul style="list-style-type: none;margin-left: -9%;color:#FDE93E;font-size: 20px;">
+          <li (click)="check()">
+            <div [ngSwitch]="peca.rating">
+              <div *ngSwitchCase="1">
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div *ngSwitchCase="2">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div *ngSwitchCase="3">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div *ngSwitchCase="4">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div *ngSwitchCase="5">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div *ngSwitchDefault>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ion-col>
+      <div *ngIf='peca.audio != false'>
+        <ion-col size="2">
+          <ion-button color="vermelho" (click)="som()">
+            <i class="fas fa-play"></i>
+          </ion-button>
+        </ion-col>
+      </div>
+    </ion-row>
+    <div *ngIf="notas;else texto">
+      <app-nota (event)="receberNota($event)" [data]="nid"></app-nota>
+    </div>
+    <ng-template #texto>
+      <div class="ion-text-wrap ">
+        {{ peca.descricao }}
+      </div>
+    </ng-template>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="preto" style="font-size: 30px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col style="margin-left: 10%;">
+          <div *ngIf="urlchange;else home">
+            <a [routerLink]="['/entrar/user']"><i style="color:#E72F37;" class="fas fa-arrow-left"></i></a>
+          </div>
+          <ng-template #home>
+            <a [routerLink]="['/home']"><i style="color:#E72F37;" class="fas fa-arrow-left"></i></a>
+          </ng-template>
+        </ion-col>
+        <ion-col style="margin-left: 15%;">
+          <div *ngIf="guardado; else not">
+            <a href="javascript:void(0)" (click)="naoGuardar()"><i style="color:#E72F37;"
+                class="fas fa-bookmark"></i></a>
+          </div>
+          <ng-template #not>
+            <a href="javascript:void(0)" (click)="guardar()"><i style="color:#E72F37;" class="far fa-bookmark"></i></a>
+          </ng-template>
+        </ion-col>
+        <ion-col style="margin-left: 15%;">
+          <a href="javascript:void(0)" (click)="changeDisplay()"><i style="color:#E72F37;" class="fas fa-edit"></i></a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
